@@ -1,0 +1,22 @@
+ul{
+	border: 3px solid darkred;
+	background-color: darksalmon;
+	width: 700px;
+margin: 100px auto;
+	text-align: center;
+}
+li{
+	list-style-type: none;
+	display: inline-block;
+	margin: 20px;
+	padding: 10px;
+	cursor: pointer;
+	
+}
+li:hover{
+	
+	color: blueviolet;
+}
+li:active{
+	color: chartreuse;
+}

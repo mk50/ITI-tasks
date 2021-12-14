@@ -1,0 +1,15 @@
+var canv=document.getElementById("canv");
+var ctx=canv.getContext("2d");
+var gradie=ctx.createLinearGradient(0, 0, 0, 400);
+gradie.addColorStop(0,"rgb(0, 191, 255)");
+gradie.addColorStop(.5,"white");
+gradie.addColorStop(0.5,"rgb(107, 142, 35)");
+gradie.addColorStop(1,"green");
+ctx.fillStyle=gradie;
+ctx.fillRect(10, 10,500, 400);
+ctx.beginPath();
+ctx.moveTo(180,230);
+ctx.lineTo(180,100);
+ctx.lineTo(350,100);
+ctx.lineTo(350,230);
+ctx.stroke();

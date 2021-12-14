@@ -1,0 +1,89 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+               $(this).find(".main li ").click(function(){
+             if($("ul.child").is(":hidden")){
+                $(this).find("ul.child").slideToggle({duration: 1000, queue: false});
+             }
+             else{
+                $("ul.child").slideUp({duration: 500, queue: false});
+             }
+                
+
+
+            });
+            });
+        </script>
+        <style>
+            .main{
+                padding: 0px;
+                margin: 0px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top:10px;
+                width: 600px;
+                height: 42px;
+                display: flex;
+                list-style-type: none;
+                justify-content: center;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .main a{
+                display: block;
+                padding: 5px;
+                font-size: 25px;
+                text-decoration: none;
+                cursor: pointer;
+            }
+            .main li{
+                background-color: gray;
+                width: 100%;
+                margin-right: 1px;
+                height: 100%;
+                text-align: center;
+                border-bottom: 2px solid rebeccapurple;
+            }
+            .main .child{
+                list-style-type: none;
+                height: 25px;
+                color:white;
+                display: none;
+                padding: 0px;
+                margin: 0px;
+                max-width: 129px;
+            }
+            .main .child li{
+                padding: 10px;
+                color: rebeccapurple;
+                font-size: 25px;
+            }
+            .main .child li:first-child{
+                margin-top: 7px;
+            }
+            .main .child li:not(li:first-child){
+                margin-top: 1px;
+                align-items: center;
+            } 
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul class="main">
+                <li>
+                    <a href="#">home</a>
+                <ul class="child">
+                    <li>item1</li>
+                    <li>item1</li>
+                    <li>item1</li>
+                </ul>
+                </li>
+                <li><a href="#">about</a></li>
+                <li><a href="#">test</a></li>
+                <li><a href="#">contact</a></li>
+            </ul>
+        </nav>
+    </body>
+</html>

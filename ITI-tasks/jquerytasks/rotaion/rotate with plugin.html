@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="script/jquery-ui.min.css">
+  <style>
+    
+  </style>
+  <script src="script/jq-D.js"></script>
+  <script src="script/jquery-ui.js"></script>
+  <script src="script/JQueryRotate.js"></script>
+  <script>
+ 
+    $( function() {
+        $("img").rotate({
+          bind: {
+            click: function () {
+              $(this).rotate({
+                angle: 0,
+                animateTo: 360,
+                duration: 3000,
+              });
+              $("img").animate(
+                {
+                  marginLeft: "450px",
+                  marginTop: "100px",
+                  width: "30%",
+                },
+                1500
+              );
+            }
+          }
+        });
+    
+    });
+  </script>
+</head>
+<body>
+ 
+<div id="mydiv1">
+  <img src="../rotaion/1.jpg" width="10%" id="img">
+</div>
+ 
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+div#video_player_box{ width:550px; background:#000; margin:0px auto;}
+div#video_controls_bar{ background: #333; padding:10px; color:#CCC;}
+</style>
+<script>
+var volume, vid, playbtn, seekslider, curtimetext, durtimetext,volhig,vollow,mutedvalu,rangespeed;
+function intializePlayer(){
+	// Set object references
+	vid = document.getElementById("my_video");
+	playbtn = document.getElementById("playpausebtn");
+	seekslider = document.getElementById("seekslider");
+	curtimetext = document.getElementById("curtimetext");
+	durtimetext = document.getElementById("durtimetext");
+    mutedvalu=document.getElementById("mutedvol");
+    follows=document.getElementById("follow");
+    backs=document.getElementById("backa");
+    rangeinput=document.getElementById("rangeinput");
+    volhig=document.getElementById("volhig");
+    vollow=document.getElementById("vollow");
+    rangespeed=document.getElementById("r");
+	// Add event listeners
+	playbtn.addEventListener("click",playPause,false);
+	seekslider.addEventListener("change",vidSeek,false);
+	vid.addEventListener("timeupdate",seektimeupdate,false);
+    vid.defaultPlaybackRate = 0.5;
+    mutedvalu.addEventListener('click',function(){
+        if(vid.muted){
+            vid.muted=false;
+        }
+        else{
+            vid.muted=true;
+        }
+
+    });
+    rangespeed.addEventListener('click',function(){
+        vid.playbackRate +=1;
+        
+    });
+    volhig.addEventListener('click',function(){
+        
+        vid.volume += 1;
+        rangeinput.value +=1;
+    
+
+    });
+    
+    vollow.addEventListener('click',function(){
+        vid.volume -= 1;
+        rangeinput.value -=1;
+
+    });
+    
+    follows.addEventListener('click',function(){
+        vid.currentTime +=5;
+
+    });
+    backs.addEventListener('click',function(){
+        vid.currentTime -=5;
+
+    });
+ 
+   
+}
+window.onload = intializePlayer;
+function playPause(){
+	if(vid.paused){
+		vid.play();
+		playbtn.innerHTML = "Pause";
+	} else {
+		vid.pause();
+		playbtn.innerHTML = "Play";
+	}
+}
+function vidSeek(){
+	var seekto = vid.duration * (seekslider.value / 100);
+	vid.currentTime = seekto;
+}
+function vidvol(){
+    var seekvol = vid.duration * (rangeinput.value / 100);
+	vid.currentTime = seekvol;
+}
+
+
+function seektimeupdate(){
+	var nt = vid.currentTime * (100 / vid.duration);
+	seekslider.value = nt;
+	var curmins = Math.floor(vid.currentTime / 60);
+	var cursecs = Math.floor(vid.currentTime - curmins * 60);
+	var durmins = Math.floor(vid.duration / 60);
+	var dursecs = Math.floor(vid.duration - durmins * 60);
+	if(cursecs < 10){ cursecs = "0"+cursecs; }
+	if(dursecs < 10){ dursecs = "0"+dursecs; }
+	if(curmins < 10){ curmins = "0"+curmins; }
+	if(durmins < 10){ durmins = "0"+durmins; }
+	curtimetext.innerHTML = curmins+":"+cursecs;
+	durtimetext.innerHTML = durmins+":"+dursecs;
+}
+</script>
+</head>
+<body>
+<div id="video_player_box">
+  <video id="my_video" width="550" height="310"  src="../tasks/Minions.mp4">
+  </video>
+  <div id="video_controls_bar">
+    <button id="playpausebtn">play</button>
+    <input id="seekslider" type="range" min="0" max="100" value="0" step="1">
+    <input type="button" id="follow" value=">>">
+    <input type="button" id="volhig" value=">">
+    <input type="button" id="vollow" value="<">
+    <input type="button" id="backa" value="<<">
+    <span id="curtimetext">00:00</span> / <span id="durtimetext">00:00</span>
+    <input type="range" id="rangeinput" min="0" max="1" value="3" >
+    <input type="button" value="mute" id="mutedvol" min="0" max="100" value="100"><br>
+    <label>speed</label>
+    <input type="range" id="r" min="0" max="100" value="0" step="1" >
+  </div>
+</div>
+</body>
+</html>
+
+

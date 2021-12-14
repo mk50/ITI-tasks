@@ -1,0 +1,160 @@
+lab3
+
+1. Insert new student and his score in exam in different subjects as transaction and save it.
+
+	begin transaction;
+	insert into students(sid,tid,gender,birthdate,first_name,last_name,contact_info)
+		values (2,1,'male','1997-12-10','mohamed','khalid','(mk5086944@gmail.com','shoubra'));
+	into exam (sid,c_no,score,date)	
+		values (2,1,60,'2005-10-23'),(5,9,45,'2004-3-6');
+	commit;
+______________________________________________________________________________________________________________
+
+2. Insert new students and his score in exam in different subjects as transaction and undo it.
+	
+	begin transaction;
+	insert into students(sid,tid,gender,birthdate,first_name,last_name,contact_info)
+		values (6,2,'male','1997-12-10','mohamed','khalid',('mk5086944@gmail.com','shoubra'));
+	insert into exam (sid,c_no,score,date)	
+		values (6,1,60,'2005-10-23'),(5,8,45,'2004-3-6');
+	rollback;
+_____________________________________________________________________________________________________________________
+
+7. Create user and give him all privileges.
+
+	create user khalid with password '123';
+	grant all on iti to khalid;
+
+__________________________________________________________________________________________________________________________________
+
+8. (from Q.3) Display the date of exam as the following: day 'month name' year.
+
+	select to_char(date,'dd-month-yyyy') as date from exam;
+
+____________________________________________________________________________________________________
+lab4
+
+1. Create Hello world function which take username and return welcome message to user using his name
+
+create of replace function hello_name (a text) 
+returns text   as $$
+DECLARE
+BEGIN
+ RETURN concat('hello, ', a);
+END; 
+$$LANGUAGE plpgsql;
+
+
+select hello_name('khalid');
+______________________________________________________________________________________
+
+2-Create multiply function which take two number and return the multiply of them
+
+CREATE OR REPLACE FUNCTION  multiply (one int , two int) 
+returns int   as $$
+DECLARE
+BEGIN
+ RETURN one*two;
+END; 
+$$LANGUAGE plpgsql;
+
+
+select  multiply(2,3);
+
+____________________________________________________________________________________________
+
+3- Create function which takes student id and subject id and return score the student in subject.
+
+CREATE OR REPLACE FUNCTION _name (aone int , atwo int) 
+returns text   as $$
+DECLARE
+ sc int;
+BEGIN
+ select score into sc from exam where sid = aone and c_no = atwo;
+ RETURN sc;
+END; 
+$$LANGUAGE plpgsql;
+
+_________________________________________________________________________________
+
+4. Create function which takes subject id and return the number of students who failed in a subject (Score less than 50
+
+select * from students_course
+
+CREATE OR REPLACE FUNCTION lessdegree (a int) 
+returns int  as $$
+DECLARE
+sc int ;
+BEGIN
+ select  count(sid) into sc from student_courses where grade < 50 and c_no = a;
+RETURN sc;
+END; 
+$$LANGUAGE plpgsql;
+
+____________________________________________________________________________________________________
+
+5-Create function which take subject name and return the average grades for subject
+
+    create or replace function average (subject_name text)returns int as $$
+    declare average int;
+    begin 
+    select  avg(grade) into average from student_course sc,courses c where sc.course_no=c.c_no and c.c_name=subject_name; 
+    return average;
+    end;
+    $$ language plpgsql;
+
+__________________________________________________________________________________________________
+
+6-Create Table called Deleted_Students which will hold the deleted students info(same columns as in student tables
+
+create table Deleted_Students (sid int , student_name text ,age int, delata timestamp)
+_________________________________________________________________________________________________________
+
+7. Create trigger to save the deleted student from Student table to Deleted_Students.
+	
+	create or replace function saveanddelete() returns trigger as $$
+    	begin
+       	insert into deletestu 
+		values(old.sid,old.tid,old.gender,old.birthdate,old.first_name,old.last_name,old.contact_info);
+       	return old;
+   	end;
+	$$ language plpgsql;
+
+	create trigger saveanddelete before delete on students for each row execute procedure saveanddelete();
+	select * from students
+	delete from students where sid=1
+__________________________________________________________________________________________________________________
+
+8. Create trigger to prevent user to insert or update Exam with Score greater than 100 or less than
+
+	create or replace function prevente() returns trigger as $$
+    	begin
+		raise notice 'Data modification not allowed';
+	end;
+	$$ language plpgsql;
+
+	create trigger prevente before update or insert on exam for each row 
+	when score > 100
+	execute procedure saveanddelete();
+
+	create trigger prevente before delete on exam
+	for insert and delete
+	as
+	if user = 'domain/khalid'
+	begin
+	raiseerror('user can not insert or update or delete)
+	rolback transaction
+	return
+	end
+
+___________________________________________________________________________________________
+
+9. Backup your Database to external file
+	
+	from C:\Program Files\PostgreSQL\13\bin
+	pg_dump -U Postgres iti > f:\iti.sql
+______________________________________________________________________________________________________
+
+10. Backup your Student table to external file
+
+	copy students from iti

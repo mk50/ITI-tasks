@@ -1,0 +1,14 @@
+var mycanv=document.getElementById("canv1");
+var ctx1=mycanv.getContext("2d");
+var gradient = ctx1.createRadialGradient(260,260,10, 250,250,180);
+gradient.addColorStop(0, "#eee");
+gradient.addColorStop(0.7, "#0052ff");
+gradient.addColorStop(0.7, "#eee");
+gradient.addColorStop(1,"#0052ff");
+ctx1.fillStyle = gradient;
+ctx1.arc(250, 250, 180, 0, 2*Math.PI);
+ctx1.fillStyle = gradient;
+ctx1.fill();
+ctx1.font = "175pt Georgia";
+ctx1.fillStyle = "white";
+ctx1.fillText("M", 147, 325);

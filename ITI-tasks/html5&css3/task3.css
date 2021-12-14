@@ -1,0 +1,9 @@
+div{
+	width: 300px;
+	height: 500px;
+	text-align: center;
+	margin:50px auto;
+	overflow-x:hidden;
+	overflow-y: scroll;
+	background-color: cadetblue;
+}

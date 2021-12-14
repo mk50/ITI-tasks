@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>forms</title>
+    <style>
+        body {
+            font-size: larger
+        }
+
+     #parenttable tr td:first-child {
+            background-color:maroon;
+            color:orange;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        #parenttable{
+            background-color:black;
+        }
+        #stdTable{
+            background-color:maroon ;
+            border: px solid mediumvioletred;
+            margin-top: 2px;
+            font-size: 30px;
+        }
+        #stdTable tr td {
+            margin: 5px;
+            border: 3px solid black;
+            color: white;
+        }
+         
+    </style>
+    <script src="task30.js"></script>
+
+</head>
+<body>
+    
+    <form>
+    <table id="parenttable">
+
+        <tr><td>name</td><td><input type="text" name="nameTxt" /><span  style="color:red; visibility:hidden"> name is required</span></td></tr>
+        <tr><td>age</td><td><input type="text" name="ageTxt" /><span  style="color:red;visibility:hidden"> number 25:50</span></span></td></tr>
+     
+        <tr><td>grade</td><td><input type="text" name="gradeTxt" /><span  style="color:red;visibility:hidden"> number 0:100</span></td></tr>
+        <tr><td colspan="2"> <select name="deptVal">
+                <option>Et</option>
+                <option>Cs</option>
+                <option>Rb</option>
+  
+            </select></td></tr>
+        <tr id='last'><td colspan="2"><input type="button" value="Add Employee" id="btn"/></td></tr>
+       
+      
+    </table>
+         
+          
+</form>
+    
+    <table id="stdTable">
+    </table>
+    
+
+    
+
+</body>
+
+</html>

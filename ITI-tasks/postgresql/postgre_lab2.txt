@@ -1,0 +1,120 @@
+lab1
+
+_________________
+student (sid,name,email,address,tid)
+student_phone(sid,phone)
+track(tid,track_name)
+course(c_no,c_name,description,max_score)
+track_courses(tid,c_no)
+exam(sid_c_no,score,date)
+
+____________________________________________________________________________________________
+lab2
+____________
+
+1. Add gender column for the student table[Enum]. It holds two value (male or female).
+
+ . create type mood as enum ('male','female') 
+   alter table student add gender mood
+
+__________________________________________________________________________________________
+
+2.Add birth date column for the student table.
+
+   alter table student add birthdate date
+
+ _________________________________________________________________________________________
+
+3.Delete the name column and replace it with two columns first name and last name.
+
+      alter table student drop column name
+
+     alter table student add first_name varchar(15) ,add last_name varchar(15);
+
+
+____________________________________________________________________________________
+
+4.Delete the address and email column and replace it with contact info (Address, email)as object Data type 
+	
+     alter table student drop column email,drop column address
+     create type contact as (email varchar(15),address varchar(15))
+     alter table student add contact_info contact
+
+________________________________________________________________________________________
+
+lab3
+__________________________________________
+
+   3. Create a view for student names with their subject's names which will study.
+
+    create view student1 as select first_name,last_name ,(c_name)as cousre_name from course co,exam e,student s
+    where s.sid=e.sid and co.c_no=e.c_no
+
+__________________________________________________________________________________________________________________________________________
+
+4. Create a view for all students name (Full Name) with their score in each subject and its date.
+
+   create view student2 as select concat(first_name,' ',last_name)as full_name ,e.score,e.date from course co,exam e,student s
+    where s.sid=e.sid and co.c_no=e.c_no
+
+____________________________________________________________________________________________________________________________________________
+
+5.Create a view for all Tracks name with their subject.
+
+    create view s3 as select tr.track_name ,co.c_name from course co,track tr,track_course tc
+     where co.c_no=tc.c_no and tr.tid=tc.tid
+     select * from s3
+
+___________________________________________________________________________________________________________________________________________
+
+6. Create a temporary view for all subjects with their max_score.
+
+      create temporary view s4 as select c_name,max_score from course
+      select * from s4
+
+______________________________________________________________________________________________________________________________________________
+
+9. Display name and age of each students
+
+  select first_name,last_name ,age('10-12-1997',birthdate)as age  from student
+
+________________________________________________________________________________________________________________________________________________
+
+10.Display the name of students with their Rounded score in each subject 
+
+     select concat (first_name,' ',last_name)as fullname ,round(score)as score
+      from student s,exam e
+      where s.sid=e.sid
+
+__________________________________________________________________________________________________________________________________________________
+
+11.Display the name of students with the year of Birthdate
+
+  select first_name ,last_name,birthdate,age('year',birthdate)as age from student
+
+____________________________________________________________________________________________________________________________________________________
+
+12.Add new exam result, in date column use NOW();
+
+
+   insert into exam values(1,3,now(),80)
+
+_______________________________________________________________________________________________________________________________________________________
+
+13.Create Schema called Database called ITI, and create different schema and Tables 
+inside this schema
+ 
+
+    create schema DB
+    create table DB.student(
+     studeint_id int primary key,
+     student_name varchar(15)
+      )
+    create table DB.courses(
+    cousre_id int primary key,
+    course_name varchar(15),
+    course_score int not null,
+    )
+
+
+

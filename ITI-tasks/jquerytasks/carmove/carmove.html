@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myimg").animate({left: 650},{duration: 2300,
+                    easing:'linear',
+            step: function(currentLeft) {
+              $("p").text(
+                `<img src="12.gif" style="left: ${Math.trunc(currentLeft)}px" />`
+              )}
+        });
+        });
+        </script> 
+        <style>
+            .mydiv{
+                margin-top: 15px;
+                width: 800px;
+                height: 300px;
+                position: relative;
+            }
+        </style> 
+      </head>
+      <body>
+          <div class="mydiv">
+          <img src="../carmove/12.gif" id="myimg" style="position: absolute;">
+        
+        </div>
+        <p>< img src="12.gif" style="left: 0px" /></p>
+      </body>
+</html>

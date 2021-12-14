@@ -1,0 +1,78 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	background-color: white;
+}
+.container{
+	width: 1170px;
+	margin: auto;
+}
+.container .header{
+	width:1170px;
+	background-color: darkgray;
+	text-align: center;
+	height: 30px;
+	
+}
+.header h3{
+	font-size: 20px;
+	color: darkgreen;
+	font-weight: bolder;
+	text-decoration: underline;
+}
+.container .nav{
+	margin-top: 20px;
+	width: 100%;
+	background-color: darkgray;
+	height: 160px;
+}
+.nav img{
+	width: 100;
+	height: 70px;
+	border-radius: 50%;
+	margin: 5px 5px;
+}
+.nav p{
+margin: 5px 5px;
+	
+}
+hr{
+	width: 100%;
+	background-color: darkgray;
+	height: 2px;
+	margin-top: 20px;
+}
+.container .ing{
+	margin-top: 10px;
+		width:100%;
+	background-color: darkgray;
+	height: 30px;
+}
+.ing h3{
+	font-size: 20px;
+	padding: 5px;
+	text-decoration: underline;
+}
+.wat{
+	margin: 10px;
+}
+.wat ol li{
+	margin-top: 5px;
+}
+.wat .ulma{
+	margin-left: 70px;
+	margin-top: 10px;
+}
+		
+.container .foot{
+		width:100%;
+	background-color: darkgray;
+	height: 30px;
+	margin-top: 10px;
+}
+.foot h3{
+	text-decoration: underline;
+	font-size: 20px;
+}

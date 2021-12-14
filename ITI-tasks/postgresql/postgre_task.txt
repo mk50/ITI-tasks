@@ -1,0 +1,97 @@
+
+1.   select first_name,last_name from employees where first_name like '%m%'
+____________________________________________________________________________________________________________
+
+2.   select *from employees where emp_no in (select super_no from employees where super_no is not null)
+_____________________________________________________________________________________________________________
+
+3.   select *from employees where salary >6000
+_____________________________________________________________________________________________________________
+
+4.   select first_name,last_name,dept_name from employees e,departments d where 
+      e.dept_no=d.dept_no
+__________________________________________________________________________________________________________________
+
+5.   select *from students , students_course where grade >any(select grade from students_course where grade>70)
+___________________________________________________________________________________________________________________
+
+6.   select distinct salary from employees order by salary desc limit(2) 
+_____________________________________________________________________________________________________________________
+
+7.    select *from employees e left join departments d
+      on e.dept_no=d.dept_no
+______________________________________________________________________________________________________________________
+
+8.    select first_name,last_name from employees where salary >10000 and dept_no=7
+______________________________________________________________________________________________________________________
+
+9.    select course_name,student_name,grade from students_course sc ,students s,courses x
+      where sc.student_no=s.student_no and sc.course_no=x.course_no
+________________________________________________________________________________________________________________________
+
+10.   select * from employees where salary is not null and bonus is null
+________________________________________________________________________________________________________________________
+
+11.   select *from employees where title is null
+________________________________________________________________________________________________________________________
+
+12.   select *from courses where course_duration >70
+________________________________________________________________________________________________________________________
+
+13.   select *from dept_manager d,departments de where 
+      d.dept_no=de.dept_no and dept_name='Finance'
+_________________________________________________________________________________________________________________________
+
+14.   select max(age) from students
+_________________________________________________________________________________________________________________________
+
+14.   select  d.*from departments  d,employees e where d.dept_no=e.dept_no
+      group by  d.dept_no
+      having count(e.dept_no )>200
+_________________________________________________________________________________________________________________________
+
+15.   select e.*from employees e, salaries s where e.emp_no=s.emp_no
+      group by e.emp_no 
+      having count (s.emp_no)>3
+__________________________________________________________________________________________________________________________
+
+16.   select max(salary) from employees e,departments d
+       where e.dept_no=d.dept_no
+        group by d.dept_no
+__________________________________________________________________________________________________________________________
+
+17.     select d.*from departments d,employees e where d.dept_no=e.dept_no
+         group by d.dept_no
+          having sum(salary)>100000
+___________________________________________________________________________________________________________________________
+
+18.       select distinct salary from employees e,departments d 
+          where e.dept_no=d.dept_no and d.dept_name='Finance'
+            order by salary desc limit 5
+____________________________________________________________________________________________________________________________
+
+19.        select course_name from courses
+           where course_no not in (select course_no from students_course)
+____________________________________________________________________________________________________________________________
+
+20.        select student_name, sum(sc.grade) from students_course sc,students s
+          where sc.student_no=s.student_no
+           group by student_name
+_____________________________________________________________________________________________________________________________
+
+21.       select sum(sc.grade) from students s,students_course sc
+          where s.student_no =sc.student_no 
+          group by sc.course_no
+          order by sum(sc.grade) desc limit 2
+______________________________________________________________________________________________________________________________
+
+22.    select d.* from departments d , employees e
+       where d.dept_no = e.dept_no
+        group by d.dept_no
+        having avg(e.salary) > 75000
+______________________________________________________________________________________________________________________________
+
+23.    select s.*from students s,students_course sc,courses x
+        where s.student_no=sc.student_no and x.course_no=sc.course_no
+       group by s.student_no
+        having sum(course_duration) >300

@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="task3.js"></script>
+   
+    <script src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap" async defer></script>
+
+        <style>
+            body{
+                margin: 0px;
+                padding: 0px;
+                background: url(../tasks/img.jpg);
+            }
+            .container{
+                margin-bottom: 100px;
+                margin-top: 20px;
+                text-align: center;
+                width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
+            }
+            .container label{
+                font-size: 20px;
+                font-weight: 50px;
+                font-family: cursive;
+                color: white;
+                
+            }
+            .container input{
+                width: 60%;
+                height: 35px;
+                border-radius: 10px;
+            }
+            #checkprice{
+                width: 150px;
+                height: 33px;
+                background: gray;
+                color: white;
+                font-size: 20px;
+                font-weight: 40px;
+                font-family: cursive;
+                text-align: center;
+            }
+            #sendinfo{
+                text-align: center;
+                font-size: 20px;
+                font-weight: 40px;
+                font-family: cursive;
+                width: 150px;
+                height: 33px;
+                background: gray;
+                color: white;
+            }
+            .child1{
+                margin-bottom: 100px;
+                margin-top: 20px;
+                text-align: center;
+                width: 900px;
+                margin-left: auto;
+                margin-right: auto;
+                display: none;
+            }
+            .child1 span{
+                color: white;
+                font-size: 20px;
+                font-weight: 40px;
+                font-family: cursive;
+                text-align: center;
+
+
+            }
+            #te{
+                color: white;
+                font-size: 20px;
+                font-weight: 40px;
+                font-family: cursive;
+                text-align: center;
+                display: none;
+            }
+        </style>
+    </head>
+<body>
+
+</body>
+<div class="container" id="cont">
+    <label>your name</label><br><br>
+    <input type="text" id="names" ><br><br>
+    <label>your number</label><br><br>
+    <input type="number" id="numbers" ><br><br>
+    <label>your email</label><br><br>
+    <input type="emial" id="emails"><br><br>
+    <label>your distination</label><br><br>
+    <input type="text" id="dist"><br><br>
+    <label>your location</label><br><br>
+    <input type="text" id="locations"><br><br>
+    <label>dates</label><br><br>
+    <input type="date" id="datesa"><br><br>
+    <select id="trip"><br><br>
+        <option>select trip...</option>
+        <option>single trip</option>
+        <option>round trip</option>
+
+    </select><br><br><br>
+    <button id="checkprice">check price</button><br><br>
+    <button id="sendinfo" onclick="sendinformation()">send</button>
+    <p id="te"></p>
+
+</div>
+<div class="child1" id="child">
+    <span id="span1"></span><br><br>
+    <span id="span2"></span><br><br>
+    <span id="span3"></span><br><br>
+    <span id="span4"></span><br><br>
+    <span id="span5"></span><br><br>
+    <span id="span6"></span><br><br>
+    <span id="span7"></span><br><br>
+    
+</div>
+    
+
+    
+</html>
